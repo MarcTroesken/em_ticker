@@ -1,10 +1,19 @@
 var irc = require('irc');
 var config = require('../config');
+var Channel = require('../models/Channel');
 
+Channel.fetchAll().then(channels => {
+    var names = [];
 
-var client = new irc.Client('irc.chat.twitch.tv', 'em_ticker', {
-    channels: ['#mulibu2k'],
-    password: config.oAuth
+    channels.forEach(channel => {
+        names.push(channel.get('name'));
+    });
+
+    var client = new irc.Client('irc.chat.twitch.tv', 'em_ticker', {
+        channels: names,
+        password: config.oAuth
+    });
+
+    module.exports = client;
 });
 
-module.exports = client;

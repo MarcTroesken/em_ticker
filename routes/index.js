@@ -12,13 +12,15 @@ router.get('/', function(req, res, next) {
 
 /* GET home page. */
 router.post('/football-data.events', function(req, res, next) {
+    // Just for testing
     fs.appendFile('testlog.txt', JSON.stringify(req.body), function (err) {
       if (err) return console.log(err);
     });
 
     res.status('200').end();
-    // req.app.locals.irc.say('#mulibu2k', 'Hi, @Boerti1525! Nice to have u here!');
 
+    // Do great stuff later
+    // req.app.locals.irc.say('#mulibu2k', 'Hi, @Boerti1525! Nice to have u here!');
     // res.json('done');
 });
 
