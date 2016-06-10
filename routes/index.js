@@ -7,9 +7,10 @@ var moment = require('moment');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-    req.app.locals.irc.say('#mulibu2k', 'Hi, @Boerti1525! Nice to have u here!');
+    res.json({status: 'ok'});
+    // req.app.locals.irc.say('#mulibu2k', 'Hi, @Boerti1525! Nice to have u here!');
 
-    res.json('done');
+    // res.json('done');
 });
 
 /* GET home page. */
