@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>miccro</title>
+</head>
+<body>
+    {{#each games as |game key|}}
+        {{#each child as |childValue childKey|}}
+            {{key}} - {{childKey}}. {{childValue}}
+          {{/each}}
+    {{/each}}
+</body>
+</html>
