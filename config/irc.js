@@ -7,6 +7,7 @@ Channel.fetchAll().then(channels => {
 
     channels.forEach(channel => {
         names.push(channel.get('name'));
+        console.log('Channel: ' + channel.get('name'));
     });
 
     var client = new irc.Client('irc.chat.twitch.tv', 'em_ticker', {
