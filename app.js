@@ -7,7 +7,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var session = require('express-session');
-var irc = require('./config/irc');
 // var passportConfig = require('./config/passport')(passport);
 
 var routes = require('./routes/index');
@@ -15,7 +14,16 @@ var routes = require('./routes/index');
 var app = express();
 
 // Register locals
-app.locals.irc = irc;
+var irc = require('irc');
+var config = require('./config');
+var channels = require('./config/channels');
+
+channels().then(names => {
+  app.locals.irc = new irc.Client('irc.chat.twitch.tv', 'em_ticker', {
+      channels: names,
+      password: config.oAuth
+  });
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
