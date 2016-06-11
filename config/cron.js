@@ -31,6 +31,7 @@ module.exports = function(client) {
                             message = `${match.homeTeamName} - ${match.awayTeamName}  ${result.goalsHomeTeam}:${result.goalsAwayTeam} `;
                             goalsHomeTeam = result.goalsHomeTeam;
                             goalsAwayTeam = result.goalsAwayTeam;
+                            console.log(message);
                             client.say('#mulibu2k', message);
                         }
                     }
