@@ -47,7 +47,7 @@ router.get('/test', function(req, res, next) {
             // Parse response for update and generate chat message
             var message = '';
 
-            if(fakeData.Updates.match(/.+?(?=\|)/g) === 'Score') {
+            if(fakeData.Updates.match(/.+?(?=\|)/g) == 'Score') {
                 var score = fakeData.Updates.match(/(\d+:\d+)/g);
                 message = `Spielstand ${parsed.fixture.homeTeamName} : ${parsed.fixture.awayTeamName} ${score[1]}`;
             } else {
