@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 var config = require('../config');
-var moment = require('moment');
 var fs = require('fs');
 
 /* GET home page. */
@@ -11,6 +10,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
+    console.log(JSON.stringify(req.body));
     fs.appendFile('testlog.txt', JSON.stringify(req.body), function (err) {
       if (err) return console.log(err);
     });
@@ -66,6 +66,8 @@ router.get('/test', function(req, res, next) {
 
 /* GET home page. */
 router.post('/football-data.events', function(req, res, next) {
+    console.log(JSON.stringify(req.body));
+
     // Just for testing
     fs.appendFile('testlog.txt', JSON.stringify(req.body), function (err) {
       if (err) return console.log(err);

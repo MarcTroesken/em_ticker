@@ -23,6 +23,8 @@ channels().then(names => {
       channels: names,
       password: config.oAuth
   });
+
+  var Cron = require('./config/cron')(app.locals.irc);
 });
 
 // view engine setup
