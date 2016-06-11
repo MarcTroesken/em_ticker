@@ -2,6 +2,7 @@ var irc = require('irc');
 var config = require('../config');
 var Channel = require('../models/Channel');
 
+// First fetch all channels to idle in
 Channel.fetchAll().then(channels => {
     var names = [];
 
@@ -10,6 +11,7 @@ Channel.fetchAll().then(channels => {
         console.log('Channel: ' + channel.get('name'));
     });
 
+    // Create the client with dynamic channel names
     var client = new irc.Client('irc.chat.twitch.tv', 'em_ticker', {
         channels: names,
         password: config.oAuth
