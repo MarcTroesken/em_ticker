@@ -2,6 +2,8 @@ var cron = require('node-cron');
 var config = require('../config');
 var request = require('request');
 var _ = require('lodash');
+var goalsHomeTeam,
+    goalsAwayTeam;
 
 module.exports = function(client) {
     cron.schedule('* * * * *', function(){
@@ -19,8 +21,6 @@ module.exports = function(client) {
             if (response.statusCode === 200) {
                 // Parse data to json
                 var matches = JSON.parse(body);
-                var goalsHomeTeam,
-                    goalsAwayTeam;
 
                 _(matches.fixtures).forEach((match) => {
                     if (match.status == 'IN_PLAY') {
