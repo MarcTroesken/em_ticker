@@ -1,6 +1,7 @@
 # Databse
 knexfile.js
 config.js
+database.sqlite
 
 # Logs
 logs
