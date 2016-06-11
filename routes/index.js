@@ -26,7 +26,7 @@ router.get('/test', function(req, res, next) {
         "Resource": "Fixture",
         "Id": 149885,
         "URI": "http://api.football-data.org/v1/fixtures/149885",
-        "Updates": "Score|1:0 -> 1:1;STATUS|OLD_VALUE -> NEW_VALUE"
+        "Updates": "Score|1:0 -> 1:1"
     }
 
     // Request options
@@ -44,12 +44,17 @@ router.get('/test', function(req, res, next) {
             // Parse data to json
             var parsed = JSON.parse(body);
 
-            // Parse response for update
-            // TODO strip goals
+            // Parse response for update and generate chat message
+            var message = '';
 
-            // Generate chat message
-            var template = `Spielstand ${parsed.fixture.homeTeamName} : ${parsed.fixture.awayTeamName} 3:0`;
-            req.app.locals.irc.say('#mulibu2k', template);
+            if(fakeData.Updates.match(/.+?(?=\|)/g) === 'Score') {
+                var score = fakeData.Updates.match(/(\d+:\d+)/g);
+                message = `Spielstand ${parsed.fixture.homeTeamName} : ${parsed.fixture.awayTeamName} ${score[1]}`;
+            } else {
+                message = `Das Spiel  ${parsed.fixture.homeTeamName} gegen ${parsed.fixture.awayTeamName} hat begonnen.`;
+            }
+
+            req.app.locals.irc.say('#mulibu2k', message);
 
             res.json({status: 'ok'});
         } else {
