@@ -9,6 +9,19 @@ router.get('/', function(req, res, next) {
     res.render('index');
 });
 
+
+/* GET home page. */
+router.post('/', function(req, res, next) {
+        console.log(JSON.stringify(req.body));
+
+        // Just for testing
+        fs.appendFile('testlog.txt', JSON.stringify(req.body), function (err) {
+          if (err) return console.log(err);
+        });
+
+        res.status('200').end();
+});
+
 /* GET home page. */
 router.get('/test', function(req, res, next) {
     // Just for testing shit
