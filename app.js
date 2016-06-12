@@ -10,6 +10,7 @@ var session = require('express-session');
 // var passportConfig = require('./config/passport')(passport);
 
 var routes = require('./routes/index');
+var channelsRoutes = require('./routes/channels');
 
 var app = express();
 
@@ -57,6 +58,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', routes);
+app.use('/channels', channelsRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
