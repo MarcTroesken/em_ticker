@@ -161,6 +161,11 @@
             <br /><br />
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
+                    {{#if success}}
+                        <div class="alert alert-success" role="alert">
+                            <strong>Yeah!</strong> {{ success }}
+                        </div>
+                    {{/if}}
                     <form action="/channels/register" method="POST">
                         <input type="text" class="form-control" name="name" placeholder="Enter your channel name ..." />
                         <button type="submit" class="btn btn-lg btn-outline">
