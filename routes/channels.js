@@ -7,6 +7,7 @@ router.post('/register', function(req, res, next) {
     new Channel({name: req.body.name})
     .save()
     .then(channel => {
+        req.app.locals.irc.join(channel.name);
         res.redirect('/');
     });
 });
